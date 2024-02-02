@@ -16,7 +16,7 @@ class TaskFactory extends Factory
         return [
             'title' => fake()->words(asText: true),
             'description' => fake()->paragraph,
-            'urgent' => fake()->randomElement([true, false]),
+            'urgent' => fake()->boolean,
             'progress' => fake()->numberBetween(0, 100),
             'user_id' => User::factory(),
             'status' => fake()->randomElement(TaskStatus::cases()),
