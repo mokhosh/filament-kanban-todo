@@ -14,8 +14,30 @@
         "
     @endif
 >
-    {{ $record['title'] }}
-    @if ($record['urgent'])
-        <x-heroicons-star/>
-    @endif
+    <div class="flex justify-between">
+        <div>
+            {{ $record['title'] }}
+
+            @if ($record['urgent'])
+                <x-heroicon-s-star class="inline-block text-primary-500 w-4 h-4"/>
+            @endif
+        </div>
+
+        <div class="text-xs text-right text-gray-400">{{ $record['owner'] }}</div>
+    </div>
+
+    <div class="text-xs text-gray-400 border-l mt-2 mb-2">
+        {{ $record['description'] }}
+    </div>
+
+    <div class="flex -space-x-2">
+        @foreach($record['team'] as $member)
+            <div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-primary-500"></div>
+        @endforeach
+    </div>
+
+    <div class="mt-2 relative">
+        <div class="absolute h-1 bg-primary-500 rounded-full" style="width: {{ $record['progress'] }}%"></div>
+        <div class="h-1 bg-gray-200 rounded-full"></div>
+    </div>
 </div>
