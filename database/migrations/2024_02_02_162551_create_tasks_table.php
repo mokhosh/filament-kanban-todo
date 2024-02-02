@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('status')->default('todo');
+            $table->string('status')->default('Todo');
+            $table->unsignedInteger('order_column');
             $table->timestamps();
         });
     }
