@@ -7,6 +7,7 @@ use App\Models\Task;
 use Filament\Actions\CreateAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Mokhosh\FilamentKanban\Pages\KanbanBoard;
 
@@ -66,5 +67,12 @@ class TasksKanbanBoard extends KanbanBoard
                     Textarea::make('description'),
                 ])
         ];
+    }
+
+    protected function additionalRecordData(Model $record): Collection
+    {
+        return collect([
+            'urgent' => $record->urgent,
+        ]);
     }
 }

@@ -15,4 +15,7 @@
     @endif
 >
     {{ $record['title'] }}
+    @if ($record['urgent'])
+        <x-heroicons-star/>
+    @endif
 </div>
