@@ -18,8 +18,16 @@ class DatabaseSeeder extends Seeder
 
          $users = User::factory(10)->create();
 
-         Task::factory(30)
+         $tasks = Task::factory(30)
              ->recycle($users)
              ->create();
+
+         $tasks->each(function (Task $task) use ($users) {
+             $task->team()->attach(
+                 $users->shuffle()
+                     ->take(fake()->numberBetween(1, 4))
+                     ->pluck('id')
+             );
+         });
     }
 }
