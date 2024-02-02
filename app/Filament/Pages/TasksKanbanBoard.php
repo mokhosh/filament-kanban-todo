@@ -35,6 +35,27 @@ class TasksKanbanBoard extends KanbanBoard
          Task::setNewOrder($orderedIds);
     }
 
+    protected function getEditModalFormSchema(null|int $recordId): array
+    {
+        return [
+            TextInput::make('title'),
+            Textarea::make('description'),
+        ];
+    }
+
+    protected function getEditModalRecordData($recordId, $data): array
+    {
+        return Task::find($recordId)->toArray();
+    }
+
+    protected function editRecord($recordId, array $data, array $state): void
+    {
+        Task::find($recordId)->update([
+            'title' => $data['title'],
+            'description' => $data['description'],
+        ]);
+    }
+
     protected function getHeaderActions(): array
     {
         return [
