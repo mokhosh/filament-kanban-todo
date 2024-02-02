@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\TaskStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,7 @@ class TaskFactory extends Factory
             'urgent' => fake()->randomElement([true, false]),
             'progress' => fake()->numberBetween(0, 100),
             'user_id' => User::factory(),
+            'status' => fake()->randomElement(TaskStatus::cases()),
         ];
     }
 }
