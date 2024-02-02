@@ -73,6 +73,10 @@ class TasksKanbanBoard extends KanbanBoard
     {
         return collect([
             'urgent' => $record->urgent,
+            'progress' => $record->progress,
+            'owner' => $record->user->name,
+            'team' => $record->team,
+            'description' => $record->description,
         ]);
     }
 }
