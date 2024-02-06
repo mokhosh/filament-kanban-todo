@@ -19,25 +19,25 @@
             {{ $record['title'] }}
 
             @if ($record['urgent'])
-                <x-heroicon-s-star class="inline-block text-primary-500 w-4 h-4"/>
+                <x-heroicon-s-star class="inline-block text-purple-500 w-4 h-4"/>
             @endif
         </div>
 
         <div class="text-xs text-right text-gray-400">{{ $record['owner'] }}</div>
     </div>
 
-    <div class="text-xs text-gray-400 border-l mt-2 mb-2">
+    <div class="text-xs text-gray-400 border-l-4 pl-2 mt-2 mb-2">
         {{ $record['description'] }}
     </div>
 
-    <div class="flex -space-x-2">
+    <div class="flex hover:-space-x-1 -space-x-3">
         @foreach($record['team'] as $member)
-            <div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-primary-500"></div>
+            <div class="w-8 h-8 transition-all rounded-full bg-gray-200 border-2 border-white"></div>
         @endforeach
     </div>
 
     <div class="mt-2 relative">
-        <div class="absolute h-1 bg-primary-500 rounded-full" style="width: {{ $record['progress'] }}%"></div>
+        <div class="absolute h-1 bg-sky-500 rounded-full" style="width: {{ $record['progress'] }}%"></div>
         <div class="h-1 bg-gray-200 rounded-full"></div>
     </div>
 </div>
