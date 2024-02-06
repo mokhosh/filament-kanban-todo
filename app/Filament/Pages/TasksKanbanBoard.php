@@ -15,6 +15,12 @@ class TasksKanbanBoard extends KanbanBoard
 {
     protected static ?string $title = 'Tasks';
 
+    protected static string $headerView = 'tasks-kanban.kanban-header';
+
+    protected static string $recordView = 'tasks-kanban.kanban-record';
+
+    protected static string $statusView = 'tasks-kanban.kanban-status';
+
     protected function statuses(): Collection
     {
          return TaskStatus::statuses();
