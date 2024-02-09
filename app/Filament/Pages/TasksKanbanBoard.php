@@ -21,26 +21,9 @@ class TasksKanbanBoard extends KanbanBoard
 
     protected static string $statusView = 'tasks-kanban.kanban-status';
 
-    protected function statuses(): Collection
-    {
-         return TaskStatus::statuses();
-    }
+    protected static string $model = Task::class;
 
-    protected function records(): Collection
-    {
-         return Task::ordered()->get();
-    }
-
-    public function onStatusChanged(int $recordId, string $status, array $fromOrderedIds, array $toOrderedIds): void
-    {
-         Task::find($recordId)->update(['status' => $status]);
-         Task::setNewOrder($toOrderedIds);
-    }
-
-    public function onSortChanged(int $recordId, string $status, array $orderedIds): void
-    {
-         Task::setNewOrder($orderedIds);
-    }
+    protected static string $statusEnum = TaskStatus::class;
 
     protected function getEditModalFormSchema(null|int $recordId): array
     {
@@ -48,19 +31,6 @@ class TasksKanbanBoard extends KanbanBoard
             TextInput::make('title'),
             Textarea::make('description'),
         ];
-    }
-
-    protected function getEditModalRecordData($recordId, $data): array
-    {
-        return Task::find($recordId)->toArray();
-    }
-
-    protected function editRecord($recordId, array $data, array $state): void
-    {
-        Task::find($recordId)->update([
-            'title' => $data['title'],
-            'description' => $data['description'],
-        ]);
     }
 
     protected function getHeaderActions(): array
@@ -73,16 +43,5 @@ class TasksKanbanBoard extends KanbanBoard
                     Textarea::make('description'),
                 ])
         ];
-    }
-
-    protected function additionalRecordData(Model $record): Collection
-    {
-        return collect([
-            'urgent' => $record->urgent,
-            'progress' => $record->progress,
-            'owner' => $record->user->name,
-            'team' => $record->team,
-            'description' => $record->description,
-        ]);
     }
 }
