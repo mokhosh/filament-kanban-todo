@@ -14,7 +14,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "mokhosh/filament-kanban": "^1.11",
+        "mokhosh/filament-kanban": "^2.1",
         "spatie/eloquent-sortable": "^4.1"
     },
     "require-dev": {
