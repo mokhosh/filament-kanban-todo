@@ -30,6 +30,7 @@ class TasksKanbanBoard extends KanbanBoard
         return [
             TextInput::make('title'),
             Textarea::make('description'),
+            TextInput::make('progress')->numeric(),
         ];
     }
 
