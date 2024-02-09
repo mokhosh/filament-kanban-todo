@@ -11,24 +11,12 @@ class UrgentTasksKanbanBoard extends KanbanBoard
 {
     protected static ?string $title = 'Urgent Tasks';
 
-    protected function statuses(): Collection
-    {
-        return TaskStatus::statuses();
-    }
+    protected static string $model = Task::class;
+
+    protected static string $statusEnum = TaskStatus::class;
 
     protected function records(): Collection
     {
         return Task::where('urgent', true)->ordered()->get();
-    }
-
-    public function onStatusChanged(int $recordId, string $status, array $fromOrderedIds, array $toOrderedIds): void
-    {
-        // Model::find($recordId)->update(['status' => $status]);
-        // Model::setNewOrder($toOrderedIds);
-    }
-
-    public function onSortChanged(int $recordId, string $status, array $orderedIds): void
-    {
-        // Model::setNewOrder($orderedIds);
     }
 }
