@@ -42,6 +42,11 @@ class TasksKanbanBoard extends KanbanBoard
                     TextInput::make('title'),
                     Textarea::make('description'),
                 ])
+                ->mutateFormDataUsing(function ($data) {
+                    $data['user_id'] = auth()->id();
+
+                    return $data;
+                })
         ];
     }
 }
